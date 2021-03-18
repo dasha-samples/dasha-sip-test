@@ -61,6 +61,7 @@ async function check(config, phone, forward) {
         concurrency: 1,
         progressReporter: dasha.progress.consoleReporter,
     });
+    console.log(`instanceId: ${app.instanceId}`);
     await app.addSessionConfig({
         name: "audio",
         config: {
