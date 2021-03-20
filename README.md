@@ -1,4 +1,4 @@
-Simple application based on Dasha.ai SDK for node.js for testing SIP connections
+Simple application based on Dasha.ai SDK for node.js for testing SIP connections. If you need any help, join us in our [Developer Community](http://community.dasha.ai).
 
 # Prerequisites:
 - node.js 12.0 and above
