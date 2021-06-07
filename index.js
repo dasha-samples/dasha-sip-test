@@ -28,14 +28,16 @@ commander
   .description("check calls to Dasha")
   .option("-f --forward <phone>", "phone or SIP URI to forward the call to")
   .action(async ({ forward }) => {
-    const app = await dasha.deploy("./app");
+    const app = await dasha.deploy("./app", { groupName: "Default"});
 
     app.connectionProvider = () =>
       dasha.sip.connect(new dasha.sip.Endpoint("default"));
     app.ttsDispatcher = () => "dasha";
 
-    app.queue.on("ready", async (conv) => {
-      conv.input = { phone: null, forward: forward ?? null };
+    app.queue.on("ready", async (id, conv, info ) => {
+      if (info.sip !== undefined)
+      console.log(`Captured sip call: ${JSON.stringify(info.sip)}`);
+      conv.input = { phone: "", forward: forward ?? null };
       await conv.execute();
 
       await app.stop();
@@ -51,7 +53,7 @@ commander
     );
     console.log("Or just type:");
     console.log(
-      "dasha sip create-inbound --application-name dtmf-test-app dtmf-test-app"
+      "dasha sip create-inbound --application-name sip-test-app sip-test-app"
     );
     console.log("And call to sip uri returned by command above");
   });
