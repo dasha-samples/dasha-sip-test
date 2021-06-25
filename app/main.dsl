@@ -32,3 +32,12 @@ node @exit
         exit;
     }
 }
+
+digression @exit
+{
+    conditions { on true tags: onclosed; }
+    do
+    {
+        exit;
+    }
+}
