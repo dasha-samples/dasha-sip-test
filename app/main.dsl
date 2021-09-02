@@ -1,6 +1,6 @@
 context {
     input phone: string;
-    input forward: string?;
+    input forward: string? = null;
 }
 
 start node root
