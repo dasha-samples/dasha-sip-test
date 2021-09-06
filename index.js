@@ -11,16 +11,14 @@ commander
   .action(async ({ phone, config, forward, verbose }) => {
     const app = await dasha.deploy("./app");
 
-    app.connectionProvider = () =>
-      dasha.sip.connect(new dasha.sip.Endpoint(config));
-    app.ttsDispatcher = () => "dasha";
-
     await app.start();
 
     const conv = app.createConversation({ phone, forward: forward ?? null });
     if (verbose) {
       conv.on("debugLog", console.log);
     }
+    conv.audio.tts = "dasha";
+    conv.sip.config = config;
     await conv.execute();
 
     await app.stop();
@@ -34,10 +32,6 @@ commander
   .option("-v --verbose", "Show debug logs")
   .action(async ({ forward, verbose }) => {
     const app = await dasha.deploy("./app", { groupName: "Default" });
-    app.connectionProvider = () =>
-      dasha.sip.connect(new dasha.sip.Endpoint("default"));
-    app.ttsDispatcher = () => "dasha";
-
     app.queue.on("ready", async (id, conv, info) => {
       if (info.sip !== undefined)
         console.log(`Captured sip call: ${JSON.stringify(info.sip)}`);
@@ -45,6 +39,7 @@ commander
       if (verbose === true) {
         conv.on("debugLog", console.log);
       }
+      conv.audio.tts = "dasha";
       await conv.execute();
     });
 
