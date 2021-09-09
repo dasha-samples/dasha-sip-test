@@ -33,7 +33,7 @@ node @exit
     }
 }
 
-digression @exit
+digression @exit_dig
 {
     conditions { on true tags: onclosed; }
     do
