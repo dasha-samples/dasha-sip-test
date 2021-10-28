@@ -9,7 +9,7 @@ Simple application based on Dasha.ai SDK for node.js for testing SIP connections
 # How to use
 
 - clone this repository
-- `npm i`
+- `npm сi`
 
 ## Outbound calls checking
 
@@ -21,7 +21,7 @@ Simple application based on Dasha.ai SDK for node.js for testing SIP connections
 dasha sip create-outbound --server my-dasha-app.pstn.twilio.com --account +1XXXXXXXXXX --ask-password twilio
 password: enter_your_password_here
 ```
-- Call to yourself `node main.js out -c twilio -p +XXXXXX`
+- Call to yourself `node index.js out -c twilio -p +XXXXXX`
 - More info: https://docs.dasha.ai/en-us/default/tutorials/sip-outbound-calls/
 
 
@@ -31,7 +31,7 @@ password: enter_your_password_here
 `dasha sip create-inbound --application-name sip-test-app sip-test-app`
 - Command will return SIP `uri`, you need to call
 - Create outbound SIP configuration on PBX/provider side
-- `node main.js in`
+- `node index.js in`
 - Wait for line: `Waiting for calls via SIP`
 - Call to `uri` returned by `dasha sip create-inbound`
 - More info: https://docs.dasha.ai/en-us/default/tutorials/sip-inbound-calls/
@@ -41,8 +41,8 @@ password: enter_your_password_here
 This program allows you to check call forwarding
 
 ```
-node main.js out -c twilio -p phone -f forward-phone
-node main.js in -f forward-phone
+node index.js out -c twilio -p phone -f forward-phone
+node index.js in -f forward-phone
 ```
 
 In the end of the dialog, your call will be forwarded to `forward-phone`.
