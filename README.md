@@ -47,6 +47,28 @@ node index.js in -f forward-phone
 
 In the end of the dialog, your call will be forwarded to `forward-phone`.
 
+## Accessing to custom headers for incoming calls
+
+DSL call `#getConnectOptions` returns a dictionary with connection options discovered after an `#connect` or `#connectSafe` call.
+
+Example result:
+```json
+{
+  "options":
+    {
+      "sip_domain": "dashatesttrunk.pstn.twilio.com",
+      "sip_fromUser": "hello",
+      "sip_displayName": "hello",
+      "sip_X_Twilio_AccountSid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "sip_X_Twilio_CallSid": "CAXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "sip_x_call_id": "XXXXXX-XXXXX-XXXXX-XXXXX-XXXXXXXXXXXXX",
+    },
+}
+```
+
+X-headers are available with prefix `sip_` and replacement `-` to `_`
+
+
 ### Notes:
 
 Forwarded calls are not tracked by Dasha, and are implemented using a `SIP REFER` message

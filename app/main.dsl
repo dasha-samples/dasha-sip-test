@@ -8,6 +8,7 @@ start node root
     do
     {
         #connectSafe($phone);
+        #log(#getConnectOptions());
         #waitForSpeech(1000);
         #say("hello");
         wait *;
