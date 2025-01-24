@@ -2,18 +2,9 @@
     "default": {
         "voiceInfo": {
             "lang": "en-US",
-            "speaker": "default",
+            "speaker": "Dasha2/linda",
             "speed": 1
         },
-        "phrases": {
-            "hello": [{ "text": "Hello" }],
-            "forward": [{ "text": "I'm going to forward you" }],
-            "fine": [{ "text": "Works fine. Good day!" }]
-        },
-        "macros": {
-            "hello": {},
-            "forward": {},
-            "fine": {}
-        }
+        "phrases": {}
     }
 }
