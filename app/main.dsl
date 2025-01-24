@@ -1,5 +1,5 @@
 context {
-    input phone: string;
+    input endpoint: string = "";
     input forward: string? = null;
 }
 
@@ -7,38 +7,56 @@ start node root
 {
     do
     {
-        #connectSafe($phone);
+        #connectSafe($endpoint);
         #log(#getConnectOptions());
         #waitForSpeech(1000);
-        #say("hello");
+        #sayText("Hello");
+        if ($forward is not null) {
+            #sayText("Press one to forward");
+        }
         wait *;
     }
     transitions
     {
-        @exit: goto @exit on true;
+        respond: goto respond on true;
     }
 }
 
-node @exit
+node respond
 {
     do
     {
-        if ($forward is not null)
-        {
-            #say("forward");
-            #forward($forward);
-            exit;
-        }
-        #say("fine");
-        exit;
+        #sayText(#getMessageText());
+        wait *;
+    } transitions {
+        respond: goto respond on true;
     }
 }
 
-digression @exit_dig
+digression dtmf {
+    conditions { on #getDTMF() is not null tags: onprotocol; }
+    do {
+        #log("Received keypad press: " + (#getDTMF() ?? ""));
+        if ($forward is not null && #getDTMF() == "1")
+        {
+            var response = #forwardSync($forward);
+            if (response.success) {
+                #log("Forward succeed");
+            } else {
+                #log("Forward failed");
+            }
+            exit;
+        }
+        return;
+    }
+}
+
+digression exit_dig
 {
     conditions { on true tags: onclosed; }
     do
     {
+        #log("Hangup by user");
         exit;
     }
 }

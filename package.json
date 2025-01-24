@@ -1,6 +1,6 @@
 {
   "name": "dasha-sip-test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "prettier": "^2.2.1"
   },
   "dependencies": {
-    "@dasha.ai/sdk": "^0.6.7",
+    "@dasha.ai/sdk": "^0.10.22",
     "commander": "^7.2.0"
   }
 }

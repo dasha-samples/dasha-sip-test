@@ -5,14 +5,11 @@
     },
     "nlu": {
         "language": "en-US",
-        "skills": [
-            "sentiment"
-        ]
+        "skills": []
     },
     "nlg": {
         "type": "phrases",
-        "file": "phrasemap.json",
-        "signatureFile": "phrasemap.json"
+        "file": "phrasemap.json"
     },
     "name": "sip-test-app"
 }
