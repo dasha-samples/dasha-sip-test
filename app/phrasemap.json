@@ -1,9 +1,14 @@
 {
     "default": {
         "voiceInfo": {
+            "speed": 1.3,
+            "speaker": "Cartesia/sonic/0c8ed86e-6c64-40f0-b252-b773911de6bb",
             "lang": "en-US",
-            "speaker": "Dasha2/linda",
-            "speed": 1
+            "options": {
+                "emotions": [
+                    "positivity:high"
+                ]
+            }
         },
         "phrases": {}
     }

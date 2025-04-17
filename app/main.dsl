@@ -3,11 +3,16 @@ context {
     input forward: string? = null;
 }
 
+external function exampleExternal():string;
+
 start node root
 {
     do
     {
-        #connectSafe($endpoint);
+        #log(external exampleExternal());
+        #connectSafe($endpoint, {
+            vad: "asap_v1"
+        });
         #log(#getConnectOptions());
         #waitForSpeech(1000);
         #sayText("Hello");
